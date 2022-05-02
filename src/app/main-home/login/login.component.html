@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <h1>Welcome</h1>
+  <form #formdata="ngForm" (ngSubmit)="login(formdata.value)">
+    <input type="text" ngModel name="email" placeholder="Enter email" />
+    <input type="password" ngModel name="password" placeholder="Password" />
+    <button>Login</button>
+  </form>
+  <a href=""></a>
+</div>
