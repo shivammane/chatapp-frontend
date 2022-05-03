@@ -38,6 +38,18 @@ export class UserHomeComponent implements OnInit {
         });
       });
     });
+    this.socket.on('receivemsg', (data) => {
+      // let j = data['messege'];
+      // let k = j.split('\n');
+      // console.log(k);
+      let da = JSON.parse(data);
+      if (da['userid'] == this.receiverid) {
+        this.messeges.push({
+          sender: da['userid'], // this sender return the id of other senders id
+          messege: da['messege'],
+        });
+      }
+    });
   }
 
   connect(text: string) {
@@ -50,6 +62,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   sendmsg(data: any) {
+    this.messeges.push({ sender: this.userid, messege: data['msg'] });
     this.socket.emit('messege', {
       userid: User.userid,
       messege: data['msg'],
