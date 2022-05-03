@@ -18,13 +18,6 @@ export class UserHomeComponent implements OnInit {
   user: any = [];
   receiverid: string = '';
   receiverName: string = '';
-  //messeges
-  // messeges:any = [
-  //   { sender: this.userid, messege: 'hi' },
-  //   { sender: 'other', messege: 'hello' },
-  //   { sender: this.userid, messege: 'how are you' },
-  //   { sender: 'other', messege: 'fine' },
-  // ];
   messeges: any = [];
 
   socket = io('http://127.0.0.1:5000/');
@@ -39,9 +32,6 @@ export class UserHomeComponent implements OnInit {
       });
     });
     this.socket.on('receivemsg', (data) => {
-      // let j = data['messege'];
-      // let k = j.split('\n');
-      // console.log(k);
       let da = JSON.parse(data);
       if (da['userid'] == this.receiverid) {
         this.messeges.push({
