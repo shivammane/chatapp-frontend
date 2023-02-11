@@ -31,8 +31,10 @@ export class UserHomeComponent implements OnInit {
         });
       });
     });
-    this.socket.on('receivemsg', (data) => {
-      let da = JSON.parse(data);
+    this.socket.on('receivemsg', (da) => {
+      // console.log(da);
+      // let da = JSON.parse(data);
+
       if (da['userid'] == this.receiverid) {
         this.messeges.push({
           sender: da['userid'], // this sender return the id of other senders id
@@ -52,14 +54,16 @@ export class UserHomeComponent implements OnInit {
   }
 
   sendmsg(data: any) {
-    this.messeges.push({ sender: this.userid, messege: data['msg'] });
-    this.socket.emit('messege', {
-      userid: User.userid,
-      messege: data['msg'],
-      receiverid: this.receiverid,
-    });
+    if (this.receiverid != '') {
+      this.messeges.push({ sender: this.userid, messege: data['msg'] });
+      this.socket.emit('messege', {
+        userid: User.userid,
+        messege: data['msg'],
+        receiverid: this.receiverid,
+      });
+    }
     (<HTMLInputElement>document.getElementById('area')).value = '';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

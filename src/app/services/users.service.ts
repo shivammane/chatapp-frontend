@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   users(data: any) {
-    return this.http.post('http://localhost:5000/users', data);
+    return this.http.post('http://localhost:5000/users', { data });
   }
 }
