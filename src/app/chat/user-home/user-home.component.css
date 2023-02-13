@@ -94,3 +94,15 @@ textarea {
   box-sizing: border-box;
   font-family: "Radio Canada", sans-serif;
 }
+
+.logout {
+  background-color: rgb(236, 59, 50);
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}

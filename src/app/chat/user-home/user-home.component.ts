@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { io } from 'socket.io-client';
 import { User } from 'src/app/class/user';
 import { MessegesService } from 'src/app/services/messeges.service';
@@ -21,7 +22,7 @@ export class UserHomeComponent implements OnInit {
   messeges: any = [];
 
   socket = io('http://127.0.0.1:5000/');
-  constructor(private users: UsersService, private msgs: MessegesService) {
+  constructor(private users: UsersService, private msgs: MessegesService, private router: Router) {
     users.users(User.userid).subscribe((data) => {
       this.user = data;
       this.socket.on('connect', () => {
@@ -64,6 +65,12 @@ export class UserHomeComponent implements OnInit {
     }
     (<HTMLInputElement>document.getElementById('area')).value = '';
   }
+
+  logout() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    this.router.navigate(["home", "login"])
+  }
+
 
   ngOnInit(): void { }
 }
