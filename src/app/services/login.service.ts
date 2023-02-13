@@ -5,8 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+  auth() {
+    return this.http.get("http://localhost:5000/login", { withCredentials: true })
+  }
   lin(data: any) {
-    return this.http.post('http://localhost:5000/login', data);
+    return this.http.post('http://localhost:5000/login', data, { withCredentials: true });
   }
 }
