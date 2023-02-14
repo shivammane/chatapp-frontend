@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/class/user';
 import { Router } from "@angular/router";
 import { LoginService } from 'src/app/services/login.service';
 
@@ -13,10 +12,6 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private lin: LoginService) {
     lin.auth().subscribe((data: any) => {
       if (data['valid'] === 'true') {
-        User.username = data['name'];
-        User.email = data['email'];
-        User.userid = data['userid'];
-
         this.router.navigate(['/', 'users'])
       }
     })

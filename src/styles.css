@@ -3,8 +3,9 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(rgb(0, 0, 0), rgb(240, 240, 240));
+  background-color: rgb(31, 31, 31);
   font-family: "Radio Canada", sans-serif;
 }

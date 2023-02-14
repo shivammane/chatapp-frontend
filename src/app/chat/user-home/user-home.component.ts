@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { io } from 'socket.io-client';
-import { User } from 'src/app/class/user';
 import { MessegesService } from 'src/app/services/messeges.service';
 import { UsersService } from 'src/app/services/users.service';
+import { LoginService } from "src/app/services/login.service";
 
 @Component({
   selector: 'app-user-home',
@@ -12,9 +12,9 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UserHomeComponent implements OnInit {
   // header part
-  name = User.username;
-  email = User.email;
-  userid = User.userid;
+  name = '';
+  email = '';
+  userid = '';
   //other users data
   user: any = [];
   receiverid: string = '';
@@ -22,16 +22,27 @@ export class UserHomeComponent implements OnInit {
   messeges: any = [];
 
   socket = io('http://127.0.0.1:5000/');
-  constructor(private users: UsersService, private msgs: MessegesService, private router: Router) {
-    users.users(User.userid).subscribe((data) => {
-      this.user = data;
-      this.socket.on('connect', () => {
-        this.socket.emit('socketid', {
-          socketid: this.socket.id,
-          userid: User.userid,
+  constructor(private users: UsersService, private msgs: MessegesService, private router: Router, private lin: LoginService) {
+    lin.auth().subscribe((data: any) => {
+      if (data['valid'] === 'true') {
+        this.name = data['name'];
+        this.email = data['email'];
+        this.userid = data['userid'];
+
+        users.users(this.userid).subscribe((data) => {
+          this.user = data;
+          setTimeout(() => {
+            this.socket.emit('socketid', {
+              socketid: this.socket.id,
+              userid: this.userid,
+            });
+          }, 1000);
         });
-      });
-    });
+      } else {
+        router.navigate(['home', 'login'])
+      }
+    })
+
     this.socket.on('receivemsg', (da) => {
       // console.log(da);
       // let da = JSON.parse(data);
@@ -58,7 +69,7 @@ export class UserHomeComponent implements OnInit {
     if (this.receiverid != '') {
       this.messeges.push({ sender: this.userid, messege: data['msg'] });
       this.socket.emit('messege', {
-        userid: User.userid,
+        userid: this.userid,
         messege: data['msg'],
         receiverid: this.receiverid,
       });
@@ -70,7 +81,5 @@ export class UserHomeComponent implements OnInit {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     this.router.navigate(["home", "login"])
   }
-
-
   ngOnInit(): void { }
 }
