@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
       } else {
         alert('incorrect email or password');
       }
+    }, (err) => {
+      alert("please try again after some time")
     });
   }
   ngOnInit(): void { }
