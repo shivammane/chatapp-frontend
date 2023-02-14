@@ -1,7 +1,13 @@
 <div class="wrapper">
   <h1>Create Account</h1>
   <form #formdata="ngForm" (ngSubmit)="creat(formdata.value)">
-    <input type="text" ngModel name="firstname" placeholder="Enter firstname" />
+    <input
+      type="text"
+      #firstName="ngModel"
+      ngModel
+      name="firstname"
+      placeholder="Enter firstname"
+    />
     <input type="text" ngModel name="lastname" placeholder="Enter lastname" />
     <input type="email" ngModel name="email" placeholder="Enter email" />
     <input type="password" ngModel name="password" placeholder="Password" />
@@ -13,4 +19,5 @@
     />
     <button type="submit">Sign in</button>
   </form>
+  <div class="invalid">{{ invalidMsg }}</div>
 </div>
