@@ -9,11 +9,18 @@
       <span style="color: bisque"> {{ email.toUpperCase() }}</span>
     </h1>
     <button class="logout" (click)="logout()">Log Out</button>
+    <div class="online" *ngIf="status === 'online'; else offline">
+      you are online
+    </div>
+    <ng-template #offline>
+      <div class="offline">you are offline</div>
+    </ng-template>
   </div>
   <div class="left">
     <div
       class="users"
       #username
+      (click)="selected(username)"
       (click)="connect(username.innerText)"
       *ngFor="let i of user"
     >

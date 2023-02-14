@@ -22,6 +22,7 @@ export class UserHomeComponent implements OnInit {
   messeges: any = [];
 
   socket = io('http://127.0.0.1:5000/');
+  selectedUser: HTMLDivElement[] = []
   constructor(private users: UsersService, private msgs: MessegesService, private router: Router, private lin: LoginService) {
     lin.auth().subscribe((data: any) => {
       if (data['valid'] === 'true') {
@@ -37,6 +38,7 @@ export class UserHomeComponent implements OnInit {
               userid: this.userid,
             });
           }, 1000);
+          this.status = 'online'
         });
       } else {
         router.navigate(['home', 'login'])
@@ -54,8 +56,12 @@ export class UserHomeComponent implements OnInit {
         });
       }
     });
-  }
 
+    this.socket.on("disconnect", () => {
+      this.status = 'offline'
+    });
+  }
+  status = ''
   connect(text: string) {
     let split = text.split('\n');
     this.receiverid = split[1];
@@ -80,6 +86,12 @@ export class UserHomeComponent implements OnInit {
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     this.router.navigate(["home", "login"])
+  }
+
+  selected(element: HTMLDivElement) {
+    this.selectedUser.pop()?.classList.remove("selecteduser")
+    this.selectedUser.push(element)
+    this.selectedUser[0].classList.add('selecteduser')
   }
   ngOnInit(): void { }
 }
