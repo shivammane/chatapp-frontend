@@ -31,12 +31,16 @@
   grid-column-end: 3;
 }
 .sendermsg {
+  width: 49%;
   background-color: aliceblue;
   padding: 1%;
   margin: 5px;
   border-radius: 20px;
 }
 .receivermsg {
+  width: 50%;
+  position: relative;
+  left: 49%;
   background-color: rgb(84, 84, 84);
   color: white;
   padding: 1%;
