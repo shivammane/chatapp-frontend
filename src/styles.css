@@ -1,11 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 0.5rem;
 }
-body {
-  background-color: rgb(31, 31, 31);
-  font-family: "Radio Canada", sans-serif;
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5);
+  outline: 1px solid slategrey;
+  border-radius: 10rem;
 }

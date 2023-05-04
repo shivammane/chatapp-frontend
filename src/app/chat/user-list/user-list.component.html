@@ -1,0 +1,15 @@
+<!-- <p>user-list works!</p> -->
+<div class="h-full bg-gray-900 overflow-y-scroll">
+  <div
+    [attr.userid]="i.userid"
+    #user
+    (click)="open(user)"
+    *ngFor="let i of user"
+    class="w-full flex items-center cursor-pointer bg-gray-700 hover:scale-[101%] border-gray-500 border-y"
+  >
+    <div
+      class="mx-3 my-1 min-h-[4rem] min-w-[4rem] bg-lime-300 rounded-full overflow-hidden"
+    ></div>
+    <div class="pl-4">{{ i.name }}</div>
+  </div>
+</div>

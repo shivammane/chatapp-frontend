@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BodyComponent } from './body/body.component';
 import { CreateNewComponent } from './create-new/create-new.component';
-import { HomeBodyComponent } from './home-body/home-body.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
-const routes: Routes = [
-  {
-    path: 'home',
-    component: BodyComponent,
-    children: [
-      { path: '', component: HomeBodyComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'createNew', component: CreateNewComponent },
-    ],
-  },
-];
+const routes: Routes = [{
+  path: 'home',
+  component: HomeComponent,
+  children: [
+    // { path: '', component: HomeBodyComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'createNew', component: CreateNewComponent },
+  ],
+},];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class MainHomeRoutingModule {}
+export class MainHomeRoutingModule { }

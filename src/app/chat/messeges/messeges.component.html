@@ -1,1 +1,21 @@
-<p>messeges works!</p>
+<!-- <p>messeges works!</p> -->
+<div class="bg-gray-700 md:border-l border-gray-500 h-full overflow-y-scroll">
+  <div *ngFor="let i of messeges" class="">
+    <div class="mx-5" *ngIf="i['sender'] == receiverId; else receiver">
+      <div
+        class="inline-block text-justify break-all max-w-[75%] p-2 bg-gray-800 rounded-lg m-0.5"
+      >
+        {{ i.messege }}
+      </div>
+    </div>
+    <ng-template #receiver>
+      <div class="text-end mx-5">
+        <div
+          class="inline-block text-justify break-all max-w-[75%] p-2 text-black font-medium bg-lime-300 rounded-lg m-0.5"
+        >
+          {{ i.messege }}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,9 +1,68 @@
-<div class="wrapper">
-  <h1>Welcome</h1>
-  <form #formdata="ngForm" (ngSubmit)="login(formdata.value)">
-    <input type="text" ngModel name="email" placeholder="Enter email" />
-    <input type="password" ngModel name="password" placeholder="Password" />
-    <button>Login</button>
-  </form>
-  <a href=""></a>
+<!-- <p>login works!</p> -->
+<div
+  class="text-5xl md:text-center bg-gray-900 pl-6 rounded-b-xl md:rounded-none h-60 md:h-0 pt-32 md:pt-0 font-medium text-slate-400"
+>
+  <h1>Log in to your</h1>
+  <h1>Account</h1>
+</div>
+<div
+  class="md:absolute top-1/2 left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 md:w-1/2"
+>
+  <div class="text-center md:border-2 md:rounded-lg md:p-6">
+    <form #formdata="ngForm" (ngSubmit)="login(formdata.value)">
+      <div class="m-6">
+        <div class="relative mt-6">
+          <label
+            class="absolute text-sm text-slate-400 bg-white px-2 -top-2 left-2"
+            for="email"
+            >Email</label
+          >
+          <input
+            class="border-2 p-3 rounded-lg w-full"
+            type="text"
+            ngModel
+            name="email"
+            placeholder="Enter email"
+          />
+
+          <!-- <input
+            type="text"
+            placeholder="email"
+            id="email"
+          /> -->
+        </div>
+        <div class="relative mt-6">
+          <label
+            class="absolute text-sm text-slate-400 bg-white px-2 -top-2 left-2"
+            for="password"
+            >Password</label
+          >
+          <input
+            class="border-2 p-3 rounded-lg w-full"
+            type="password"
+            ngModel
+            name="password"
+            placeholder="Password"
+          />
+
+          <!-- <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+          /> -->
+        </div>
+        <p class="text-right text-lime-500 font-medium">Forget Password?</p>
+        <button
+          class="mt-6 text-center bg-lime-500 p-3 font-medium rounded-lg w-full"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+    <div>
+      Don't have an account?
+      <a class="text-lime-500" routerLink="../createNew">create new account</a>
+    </div>
+  </div>
 </div>

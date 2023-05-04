@@ -1,0 +1,38 @@
+<!-- <p>chat-home works!</p> -->
+<div
+  class="main md:grid grid-cols-3 text-white h-[100vh] relative overflow-hidden bg-black md:p-2 grid-rows-[10%_80%_10%] scroll"
+>
+  <div
+    #adminProfile
+    class="h-[10%] transition-transform md:transition-none md:translate-y-0 md:z-0 md:h-full absolute top-0 md:static w-full"
+  >
+    <app-sender-info></app-sender-info>
+  </div>
+  <div class="col-span-2 bg-blue-400 h-[10%] md:h-full">
+    <app-receiver-info
+      [element1]="adminProfile"
+      [element2]="userList"
+      [receiverName]="receiverName"
+    ></app-receiver-info>
+  </div>
+  <div
+    #userList
+    class="row-span-2 w-full transition-transform md:transition-none md:translate-y-0 absolute md:z-0 md:static h-[90%] md:h-full"
+  >
+    <app-user-list
+      [element1]="adminProfile"
+      [element2]="userList"
+      (receiverId)="receiverId = $event"
+      (receiverName)="receiverName = $event"
+    ></app-user-list>
+  </div>
+  <div class="col-span-2 h-[80%] md:h-full">
+    <app-messeges [receiverId]="receiverId" [messege]="messege"></app-messeges>
+  </div>
+  <div class="col-span-2 h-[10%] md:h-full">
+    <app-send-messege
+      [receiverId]="receiverId"
+      (messege)="messege = $event"
+    ></app-send-messege>
+  </div>
+</div>

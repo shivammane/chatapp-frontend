@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { CreateNewService } from 'src/app/services/create-new.service';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { CreateNewService } from 'src/app/services/create-new.service';
 
 @Component({
   selector: 'app-create-new',
   templateUrl: './create-new.component.html',
-  styleUrls: ['./create-new.component.css'],
+  styleUrls: ['./create-new.component.css']
 })
-export class CreateNewComponent implements OnInit {
+export class CreateNewComponent {
   constructor(private create: CreateNewService, private router: Router) { }
   invalidMsg = ''
+  cancleIcon = faXmark
+  close() {
+    this.invalidMsg = ''
+  }
   creat(info: any) {
     if (info.password !== info.comfirmpassword) {
       this.invalidMsg = 'confirm password again'
@@ -19,18 +24,16 @@ export class CreateNewComponent implements OnInit {
       return
     }
     this.invalidMsg = ''
-    this.create.create(info).subscribe((data: any) => {
-      if (data.toString() == 'true') {
-        alert('account created successfully');
-        alert('please try to log in');
-        this.router.navigate(['home', 'login']);
-      } else {
-        alert('email address already used');
-      }
-    }, (err: any) => {
-      alert('please try again after some time')
-    });
-
+    this.create.create(info).subscribe({
+      next: (data: any) => {
+        if (data.toString() == 'true') {
+          alert('account created successfully');
+          alert('please try to log in');
+          this.router.navigate(['home', 'login']);
+        } else {
+          alert('email address already used');
+        }
+      }, error: () => { alert('please try again after some time') }
+    })
   }
-  ngOnInit(): void { }
 }

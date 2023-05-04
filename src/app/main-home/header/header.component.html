@@ -1,7 +1,35 @@
-<div class="header">
-  <div class="header-right">
-    <a class="home" routerLink="">Home</a>
-    <a class="login" routerLink="login">Login</a>
-    <a class="create" routerLink="createNew">Create New Account</a>
+<!-- <p>header works!</p> -->
+<div class="md:flex text-white justify-between items-center relative">
+  <div (click)="open(menu)" class="md:hidden absolute z-20 top-4 right-4">
+    <button class="p-1 rounded">
+      <fa-icon size="2xl" [icon]="menuOption"></fa-icon>
+    </button>
+  </div>
+  <div
+    routerLink="../home"
+    class="md:block cursor-pointer absolute md:static z-20 bg-lime-500 inline-block ml-6 md:ml-0 mt-4 md:mt-0 rounded-full px-4 py-2"
+  >
+    APP
+  </div>
+  <div
+    #menu
+    class="absolute flex justify-center items-center -translate-y-[50vh] md:-translate-y-0 md:transition-none md:flex-none rounded-b-xl top-0 z-10 h-80 md:h-20 bg-gray-900 md:bg-transparent text-center w-full transition-transform md:static md:w-1/2"
+  >
+    <div class="md:flex w-full md:m-4 justify-end">
+      <div
+        (click)="open(menu)"
+        routerLink="login"
+        class="bg-gray-500 justify-self-end px-4 py-2 rounded-xl md:mr-4 cursor-pointer"
+      >
+        login
+      </div>
+      <div
+        routerLink="createNew"
+        (click)="open(menu)"
+        class="bg-black px-4 py-2 rounded-xl md:mr-4 cursor-pointer"
+      >
+        create new account
+      </div>
+    </div>
   </div>
 </div>

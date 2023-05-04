@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CreateNewService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   create(data: any) {
     return this.http.post('http://localhost:5000/createNew', data);
   }

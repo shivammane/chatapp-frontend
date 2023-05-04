@@ -2,20 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ChatRoutingModule } from './chat-routing.module';
-import { UsersComponent } from './users/users.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+import { ChatHomeComponent } from './chat-home/chat-home.component';
 import { MessegesComponent } from './messeges/messeges.component';
-import { SubmitMsgComponent } from './submit-msg/submit-msg.component';
+import { ReceiverInfoComponent } from './receiver-info/receiver-info.component';
+import { SenderInfoComponent } from './sender-info/sender-info.component';
+import { SendMessegeComponent } from './send-messege/send-messege.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    UsersComponent,
-    UserHomeComponent,
+    ChatHomeComponent,
     MessegesComponent,
-    SubmitMsgComponent,
+    ReceiverInfoComponent,
+    SenderInfoComponent,
+    SendMessegeComponent,
+    UserListComponent
   ],
-  imports: [CommonModule, ChatRoutingModule, FormsModule],
-  exports: [UsersComponent],
+  imports: [
+    CommonModule,
+    ChatRoutingModule,
+    FontAwesomeModule,
+    FormsModule
+  ]
 })
-export class ChatModule {}
+export class ChatModule { }

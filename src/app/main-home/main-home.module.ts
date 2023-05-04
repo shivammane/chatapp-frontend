@@ -2,22 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainHomeRoutingModule } from './main-home-routing.module';
-import { HeaderComponent } from './header/header.component';
-import { BodyComponent } from './body/body.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateNewComponent } from './create-new/create-new.component';
-import { HomeBodyComponent } from './home-body/home-body.component';
+import { HeaderComponent } from './header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    BodyComponent,
+    HomeComponent,
     LoginComponent,
     CreateNewComponent,
-    HomeBodyComponent,
+    HeaderComponent
   ],
-  imports: [CommonModule, MainHomeRoutingModule, FormsModule],
-  exports: [HeaderComponent],
+  imports: [
+    CommonModule,
+    MainHomeRoutingModule,
+    FontAwesomeModule,
+    FormsModule
+  ]
 })
-export class MainHomeModule {}
+export class MainHomeModule { }

@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { SenderInfoService } from 'src/app/services/sender-info.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  constructor(private router: Router, private lin: LoginService) {
+export class LoginComponent {
+  constructor(private router: Router, private lin: LoginService, private senderInfo: SenderInfoService) {
 
   }
   login(info: any) {
-    this.lin.lin(info).subscribe((data: any) => {
-      if (data[0]['email'] == info['email']) {
-        this.router.navigate(['/', 'users'])
-      } else {
-        alert('incorrect email or password');
+    this.lin.lin(info).subscribe({
+      next: (data: any) => {
+        if (data[0]['email'] == info['email']) {
+          this.router.navigate(['/', 'chat'])
+        } else {
+          alert('incorrect email or password');
+        }
+      }, error: () => {
+        alert("please try again after some time")
       }
-    }, (err) => {
-      alert("please try again after some time")
     });
   }
-  ngOnInit(): void { }
 }

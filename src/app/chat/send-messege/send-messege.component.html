@@ -1,0 +1,20 @@
+<!-- <p>send-messege works!</p> -->
+<div
+  class="flex justify-around md:border-l border-gray-500 bg-gray-900 items-center h-full"
+>
+  <div class="cursor-pointer">
+    <fa-icon size="xl" [icon]="emojiIcon"></fa-icon>
+  </div>
+  <div class="cursor-pointer">
+    <fa-icon size="xl" [icon]="clipIcon"></fa-icon>
+  </div>
+  <div
+    #msg
+    (keyup.enter)="sendmsg(msg)"
+    class="bg-gray-700 w-[60%] md:w-9/12 py-2 max-h-[96%] rounded-lg break-all overflow-y-scroll"
+    contenteditable="true"
+  ></div>
+  <div (click)="sendmsg(msg)" class="cursor-pointer">
+    <fa-icon size="xl" [icon]="sendIcon"></fa-icon>
+  </div>
+</div>
